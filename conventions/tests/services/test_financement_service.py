@@ -204,8 +204,9 @@ class ConventionFinancementServiceTests(TestCase):
         assert form.errors == {}
 
     def test_pls_avenant_date_fin_conventionnement(self):
-        self.service_avenant.convention.lot.financement = Financement.PLS
-        self.service_avenant.convention.save()
+        lot = self.service_avenant.convention.lot
+        lot.financement = Financement.PLS
+        lot.save()
 
         self.service_avenant.request.POST = {
             **financement_form,
