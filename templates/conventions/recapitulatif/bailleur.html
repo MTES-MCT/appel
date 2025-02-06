@@ -2,7 +2,9 @@
 {% load custom_filters %}
 
 {% block card_classes %}fr-mt-1w{% endblock card_classes %}
-{% block title %}Bailleur et administration{% endblock title %}
+{% block title %}
+    {% include "conventions/common/avenants_checkboxes.html" with title="Bailleur et administration" checked=checked id="bailleur" avenant_type="bailleur" %}
+{% endblock title %}
 
 {% block body %}
     {% with bailleur_uuid=bailleur.uuid|slugify %}
@@ -89,8 +91,4 @@
             {{ convention.administration }}
         </div>
     </div>
-
-    {% if convention.is_avenant %}
-        {% include "conventions/actions/remove_from_avenant.html" with avenant_type="bailleur" %}
-    {% endif %}
 {% endblock %}
